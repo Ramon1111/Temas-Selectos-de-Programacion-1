@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/fondoamarillov"
+    android:background="@drawable/bird2"
     >
 
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/headTitleMain"
         android:layout_width="100dp"
 
         android:layout_height="wrap_content"
@@ -23,55 +22,66 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.194"
         android:gravity="center"
-        android:textColor="@android:color/white"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryText"
 
-    <EditText
-        android:layout_width="350dp"
-        android:id="@+id/Nombre"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/white"
+
         />
 
     <EditText
-        android:id="@+id/editText"
+        android:layout_width="350dp"
+        android:id="@+id/edtNombreMain"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headTitleMain"
+        android:hint="Nombre"
+        android:textColor="@color/colorPrimaryText"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/edtCorreoMain"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:hint="Coreo"
+        android:hint="Correo"
+        android:textColorHint="@color/colorSecondaryText"
+        android:textColor="@color/colorPrimaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nombre"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreMain"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/edtContrasenaMain"
         android:layout_width="350dp"
+        android:textColor="@color/colorPrimaryText"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/edtCorreoMain"
         android:hint="Contraseña"
         android:inputType="textPassword"
         />
 
     <Button
+        android:id="@+id/btnCrearMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain"
         android:text="Crear"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorIcons"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
 
         />
