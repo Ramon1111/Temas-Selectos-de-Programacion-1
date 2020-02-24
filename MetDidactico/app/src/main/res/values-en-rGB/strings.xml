@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MetDidactico</string>
+    <string name="mainStringHintNombre">Name</string>
+    <string name="mainStringTextViewCrea">Create Account</string>
+    <string name="mainStringHintCorreo">E-mail</string>
+    <string name="mainStringButtonCrear">Create</string>
+    <string name="mainStringHintContrasena">Password</string>
+</resources>

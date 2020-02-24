@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity"/>
     </application>
+
+    <!--Se requiere que demos de alta en el manifest las vistas o activities creadas manualmente por nosotros-->
 
 </manifest>

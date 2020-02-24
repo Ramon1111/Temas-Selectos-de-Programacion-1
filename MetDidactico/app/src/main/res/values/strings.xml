@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">MetDidactico</string>
+    <string name="app_name" translatable="false">MetDidactico</string>
+    <string name="mainStringTextViewCrea">Crea una Cuenta</string>
+    <string name="mainStringHintNombre">Nombre</string>
+    <string name="mainStringHintCorreo">Correo</string>
+    <string name="mainStringHintContrasena">Contraseña</string>
+    <string name="mainStringButtonCrear">Crear</string>
 </resources>

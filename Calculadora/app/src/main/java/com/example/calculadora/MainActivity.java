@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cero.setOnClickListener(this);
         punto.setOnClickListener(this);
         igual.setOnClickListener(this);
-
     }
 
 
@@ -63,7 +63,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         TextView elemento=(TextView)findViewById(v.getId());
 
-        if(valor.getText().toString()=="0"&&v.getId()!=R.id.cleanMain&&v.getId()!=R.id.igualMain)
+        switch(v.getId()) {
+            case R.id.cleanMain:
+                valor.setText("0");
+                break;
+
+            case R.id.igualMain:
+                CharSequence cadena=valor.getText();
+                for(int i=0;i<cadena.length();i++){
+                    Log.i("letra"+i,""+cadena.charAt(i));
+                }
+                break;
+
+            default:
+                valor.setText(valor.getText().toString()+elemento.getText().toString());
+                break;
+        }
+        /*if(valor.getText().toString()=="0"&&v.getId()!=R.id.cleanMain&&v.getId()!=R.id.igualMain)
             valor.setText(elemento.getText().toString());
         else{
             if(v.getId()==R.id.cleanMain)
@@ -78,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else
                     valor.setText(valor.getText().toString()+elemento.getText().toString());
             }
-        }
+        }*/
 
 
     }
