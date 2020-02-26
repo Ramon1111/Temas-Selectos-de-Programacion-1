@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Boolean nuevoCalculo, menosEscrito;
     Boolean nuevoNumero, fin;
     Double primerNumero;
-    Integer lenghtPrimerNumero;
+    Integer lengthPrimerNumero;
     Double segundoNumero;
     String operacion;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nuevoCalculo=true;
         nuevoNumero=true;
         primerNumero=null;
-        lenghtPrimerNumero=null;
+        lengthPrimerNumero=null;
         segundoNumero=null;
         operacion=null;
         fin=false;
@@ -97,15 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (v.getId() == mas.getId() || v.getId() == menos.getId() || v.getId() == por.getId() || v.getId() == entre.getId()) {
 
                         primerNumero = Double.parseDouble(""+valor.getText().toString());
-                        lenghtPrimerNumero = elemento.length();
-                        Log.i("newOperation", "operación "+lenghtPrimerNumero);
+                        lengthPrimerNumero = valor.length();
                         operacion=elemento.getText().toString();
-                        lenghtPrimerNumero=elemento.length();
+                        Log.i("numero1",""+operacion);
                         ponerGrisTeclas();
                         nuevoCalculo=false;
                         punto.setOnClickListener(this);
                         punto.setBackgroundResource(R.color.colorPrimaryLight);
-                        //punto.setBackgroundResource(R.color.colorSecondaryText);
                     }
                     if(elemento.getId()==igual.getId()){
                         igual.setBackgroundResource(R.color.colorSecondaryText);
@@ -117,21 +115,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 else{
-                    String segundo=valor.getText().toString().substring(lenghtPrimerNumero+1);
+
                     Double total=null;
-                    Log.i("numero",""+primerNumero);
-                    if(elemento.getId()==igual.getId()&& !segundo.isEmpty()&&!nuevoCalculo){
+                    Log.i("numero1",""+valor.getText().toString().substring(lengthPrimerNumero+1));
+                    if(elemento.getId()==igual.getId()&&!valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty()){
                         fin=true;
-                        segundoNumero=Double.parseDouble(segundo);
+
+                        //Log.i("numero1",""+lengthPrimerNumero);
+                        String segundo=valor.getText().toString().substring(lengthPrimerNumero);
+                        segundoNumero=Double.parseDouble(valor.getText().toString().substring(lengthPrimerNumero+1));
+                        Log.i("numero2",""+operacion);
+
                         switch (operacion){
                             case "+":
                                 total=primerNumero+segundoNumero;
+                                Log.i("numero2",""+operacion);
                                 break;
                             case "-":
-                                total=primerNumero-segundoNumero;
+                                total=(Double)primerNumero-(Double)segundoNumero;
+
                                 break;
                             case "x":
-                                total=primerNumero*segundoNumero;
+                                try {
+                                    total = (Double) ((Double) primerNumero * (Double) segundoNumero);
+                                }
+                                catch (Exception e){
+                                    Log.e("numero3",""+e.getMessage());
+                                }
                                 break;
                             case "/":
                                 if(segundoNumero==0)
@@ -148,17 +158,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                     else
-                        Toast.makeText(getApplicationContext(),"Escriba el segundo numero a operar", Toast.LENGTH_SHORT).show();
+                        if(elemento.getId()==igual.getId()&&valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty())
+                            Toast.makeText(getApplicationContext(),"Escriba el segundo numero a operar", Toast.LENGTH_SHORT).show();
                 }
 
 
-                if(!fin){
+                if(!fin&&elemento.getText().toString()!="="){
                     if(nuevoNumero){
                         nuevoNumero=false;
-                        valor.setText(elemento.getText());
+                        if(elemento.getText().toString()==".")
+                            valor.setText("0"+elemento.getText());
+                        else
+                            valor.setText(elemento.getText());
                     }
                     else{
-                        valor.setText(valor.getText().toString().concat(elemento.getText().toString()));
+                         valor.setText(valor.getText().toString().concat(elemento.getText().toString()));
                     }
                 }
                 break;
@@ -199,6 +213,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         por.setBackgroundResource(R.color.colorPrimaryDark);
         entre.setBackgroundResource(R.color.colorPrimaryDark);
         igual.setBackgroundResource(R.color.colorPrimaryDark);
+
+        igual.setBackgroundResource(R.color.colorPrimaryLight);
     }
 
     public void ponerGrisTeclas(){
