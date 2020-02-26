@@ -17,6 +17,7 @@
         android:columnCount="4"
         android:columnOrderPreserved="false"
         android:padding="0dp"
+        android:layout_gravity="fill"
         >
 
         <!-- Row 0 -->
@@ -185,7 +186,7 @@
             style="@style/AppTheme.BotonCalculadora.Num"
             android:layout_column="0"
             android:layout_row="5"
-            android:text="0"
+            android:text="."
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
             android:gravity="center_horizontal"
@@ -196,7 +197,7 @@
             style="@style/AppTheme.BotonCalculadora.Num"
             android:layout_column="1"
             android:layout_row="5"
-            android:text="."
+            android:text="0"
             android:layout_gravity="fill_horizontal"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

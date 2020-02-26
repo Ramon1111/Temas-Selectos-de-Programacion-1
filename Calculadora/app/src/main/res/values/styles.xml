@@ -13,8 +13,8 @@
     <!--Para los botones-->
     <style name="AppTheme.NumerosCalculadora" parent="TextAppearance.AppCompat.Headline">
         <item name="android:gravity">center</item>
-        <item name="android:paddingVertical">45dp</item>
-        <item name="android:paddingHorizontal">45dp</item>
+        <item name="android:paddingVertical">43dp</item>
+        <item name="android:paddingHorizontal">43dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
