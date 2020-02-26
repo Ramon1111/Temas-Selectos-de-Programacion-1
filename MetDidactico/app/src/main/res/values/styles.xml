@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="botonesIngresar">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorIcons</item>
+        <item name="android:paddingHorizontal">10dp</item>
+    </style>
+
 </resources>

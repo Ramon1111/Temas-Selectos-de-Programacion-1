@@ -53,21 +53,35 @@
         />
 
     <Button
-        android:id="@+id/btnCrearLogin"
+        android:id="@+id/btnIngresarLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="80dp"
         android:background="@color/colorPrimaryDark"
         android:text="Ingresar"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/colorIcons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.435"
+
+        app:layout_constraintStart_toEndOf="@+id/btnCrearLogin"
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaLogin" />
+
+    <Button
+        android:id="@+id/btnCrearLogin"
+        style="@style/botonesIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/strBotonCrear"
+        app:layout_constraintBottom_toBottomOf="@+id/btnIngresarLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/edtContrasenaLogin"
-
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

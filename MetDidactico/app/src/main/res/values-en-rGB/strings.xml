@@ -6,4 +6,6 @@
     <string name="mainStringHintCorreo">E-mail</string>
     <string name="mainStringButtonCrear">Create</string>
     <string name="mainStringHintContrasena">Password</string>
+    <string name="mainStringButtonIngresar">Log In</string>
+    <string name="strBotonCrear">Sign Up</string>
 </resources>

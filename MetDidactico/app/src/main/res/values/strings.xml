@@ -5,4 +5,6 @@
     <string name="mainStringHintCorreo">Correo</string>
     <string name="mainStringHintContrasena">Contraseña</string>
     <string name="mainStringButtonCrear">Crear</string>
+    <string name="mainStringButtonIngresar">Ingresar</string>
+    <string name="strBotonCrear">Crear Cuenta</string>
 </resources>

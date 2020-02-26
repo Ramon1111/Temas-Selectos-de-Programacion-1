@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(elemento.getId()) {
             case R.id.cleanMain:
-                Log.i("newOperation","Nuevo Cálculo");
                 nuevoEvento();
                 break;
 
@@ -117,19 +116,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else{
 
                     Double total=null;
-                    Log.i("numero1",""+valor.getText().toString().substring(lengthPrimerNumero+1));
                     if(elemento.getId()==igual.getId()&&!valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty()){
                         fin=true;
-
-                        //Log.i("numero1",""+lengthPrimerNumero);
                         String segundo=valor.getText().toString().substring(lengthPrimerNumero);
                         segundoNumero=Double.parseDouble(valor.getText().toString().substring(lengthPrimerNumero+1));
-                        Log.i("numero2",""+operacion);
 
                         switch (operacion){
                             case "+":
                                 total=primerNumero+segundoNumero;
-                                Log.i("numero2",""+operacion);
                                 break;
                             case "-":
                                 total=(Double)primerNumero-(Double)segundoNumero;
@@ -212,9 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menos.setBackgroundResource(R.color.colorPrimaryDark);
         por.setBackgroundResource(R.color.colorPrimaryDark);
         entre.setBackgroundResource(R.color.colorPrimaryDark);
-        igual.setBackgroundResource(R.color.colorPrimaryDark);
-
-        igual.setBackgroundResource(R.color.colorPrimaryLight);
+        igual.setBackgroundResource(R.color.colorAccent);
     }
 
     public void ponerGrisTeclas(){

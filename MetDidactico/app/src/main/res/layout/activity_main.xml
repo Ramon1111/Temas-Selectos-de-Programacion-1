@@ -71,20 +71,29 @@
 
     <Button
         android:id="@+id/btnCrearMain"
+        style="@style/botonesIngresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:background="@color/colorPrimaryDark"
         android:text="@string/mainStringButtonCrear"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textColor="@color/colorIcons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.47"
+
+        app:layout_constraintStart_toEndOf="@+id/btnIngresarMain"
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain" />
+
+    <Button
+        android:id="@+id/btnIngresarMain"
+        style="@style/botonesIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/mainStringButtonIngresar"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

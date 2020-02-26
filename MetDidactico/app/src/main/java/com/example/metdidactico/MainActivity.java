@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Se ha registrado con éxito", Toast.LENGTH_SHORT).show();
 
                             //Para mandar a la siguiente página
+                            //También se usa para pasar parámetros por lo que se usa un método
                             Intent intentlogin=new Intent(getApplicationContext(), LoginActivity.class);
+                            intentlogin.putExtra(getString(R.string.mainStringHintCorreo),Correo);
+                            intentlogin.putExtra(getString(R.string.mainStringHintContrasena),Password);
                             startActivity(intentlogin);
                         }
                     }
