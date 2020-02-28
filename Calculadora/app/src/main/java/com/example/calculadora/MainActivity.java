@@ -2,6 +2,8 @@ package com.example.calculadora;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView valor;
-    TextView clean, mas, siete, ocho, nueve, menos, cuatro, cinco, seis, por, uno, dos, tres, entre, cero, punto, igual;
+    TextView clean, mas, siete, ocho, nueve, menos, cuatro, cinco, seis, por, uno, dos, tres, entre, cero, punto, igual, seno, coseno, tangente;
 
     Boolean nuevoCalculo, menosEscrito;
     Boolean nuevoNumero, fin;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Double segundoNumero;
     String operacion;
 
+    int orientacion;
+    
 
 
     @Override
@@ -31,80 +35,104 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nuevoCalculo=true;
-        nuevoNumero=true;
-        primerNumero=null;
-        lengthPrimerNumero=null;
-        segundoNumero=null;
-        operacion=null;
-        fin=false;
-        menosEscrito=false;
-
-        valor=(TextView)findViewById(R.id.valorMain);
-
-        clean = (TextView)findViewById(R.id.cleanMain);
-        mas = (TextView)findViewById(R.id.masMain);
-        siete = (TextView)findViewById(R.id.sieteMain);
-        ocho = (TextView)findViewById(R.id.ochoMain);
-        nueve = (TextView)findViewById(R.id.nueveMain);
-        menos = (TextView)findViewById(R.id.menosMain);
-        cuatro = (TextView)findViewById(R.id.cuatroMain);
-        cinco = (TextView)findViewById(R.id.cincoMain);
-        seis = (TextView)findViewById(R.id.seisMain);
-        por = (TextView)findViewById(R.id.porMain);
-        uno = (TextView)findViewById(R.id.unoMain);
-        dos = (TextView)findViewById(R.id.dosMain);
-        tres = (TextView)findViewById(R.id.tresMain);
-        entre = (TextView)findViewById(R.id.entreMain);
-        cero = (TextView)findViewById(R.id.ceroMain);
-        punto = (TextView)findViewById(R.id.puntoMain);
-        igual = (TextView)findViewById(R.id.igualMain);
-
-        siete.setOnClickListener(this);
-        ocho.setOnClickListener(this);
-        nueve.setOnClickListener(this);
-        cuatro.setOnClickListener(this);
-        cinco.setOnClickListener(this);
-        seis.setOnClickListener(this);
-        uno.setOnClickListener(this);
-        dos.setOnClickListener(this);
-        tres.setOnClickListener(this);
-
-        cero.setOnClickListener(this);
-        punto.setOnClickListener(this);
-        igual.setOnClickListener(this);
-
+        nuevaImagen();
         nuevoEvento();
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            orientacion=getResources().getConfiguration().orientation;
+            setContentView(R.layout.activity_main);
+            nuevaImagen();
+            nuevoEvento();
+        }
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            orientacion=getResources().getConfiguration().orientation;
+
+            seno.setOnClickListener(null);
+            coseno.setOnClickListener(null);
+            tangente.setOnClickListener(null);
+
+            setContentView(R.layout.activity_main);
+
+            nuevaImagen();
+            nuevoEvento();
+        }
+    }
+
+    @Override
     public void onClick(View v) {
+
         TextView elemento=(TextView)findViewById(v.getId());
 
         switch(elemento.getId()) {
             case R.id.cleanMain:
                 nuevoEvento();
                 break;
+            case (R.id.sinMain):
+                try{
+                    Double seno=Math.sin(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    valor.setText(String.valueOf(seno));
+                    noActionNumber();
+                    ponerGrisTeclas();
+                    igual.setBackgroundResource(R.color.colorSecondaryText);
+                    igual.setOnClickListener(null);
+                }
+                catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Formato de número inválido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case (R.id.cosMain):
+                try{
+                    Double coseno=Math.cos(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    valor.setText(String.valueOf(coseno));
+                    noActionNumber();
+                    ponerGrisTeclas();
+                    igual.setBackgroundResource(R.color.colorSecondaryText);
+                    igual.setOnClickListener(null);
+                }
+                catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Formato de número inválido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case (R.id.tanMain):
+                try{
+                    Double tangente=Math.tan(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    valor.setText(String.valueOf(tangente));
+                    noActionNumber();
+                    ponerGrisTeclas();
+                    igual.setBackgroundResource(R.color.colorSecondaryText);
+                    igual.setOnClickListener(null);
+                }
+                catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Formato de número inválido", Toast.LENGTH_SHORT).show();
+                }
+                break;
 
             default:
                 if(nuevoCalculo) {
-                    if(elemento.getId()==punto.getId()){
+                    if(elemento.getId()==punto.getId())
                         punto.setOnClickListener(null);
-                        punto.setBackgroundResource(R.color.colorSecondaryText);
-                    }
 
                     if (v.getId() == mas.getId() || v.getId() == menos.getId() || v.getId() == por.getId() || v.getId() == entre.getId()) {
-
+                        if(valor.getText().charAt(0)=='.'&&valor.getText().length()==1)
+                            valor.setText("0.");
                         primerNumero = Double.parseDouble(""+valor.getText().toString());
+
                         lengthPrimerNumero = valor.length();
                         operacion=elemento.getText().toString();
                         Log.i("numero1",""+operacion);
                         ponerGrisTeclas();
                         nuevoCalculo=false;
                         punto.setOnClickListener(this);
-                        punto.setBackgroundResource(R.color.colorPrimaryLight);
                     }
                     if(elemento.getId()==igual.getId()){
+                        if(valor.getText().charAt(0)=='.'&&valor.getText().length()==1)
+                            valor.setText("0.");
                         igual.setBackgroundResource(R.color.colorSecondaryText);
                         igual.setOnClickListener(null);
                         ponerGrisTeclas();
@@ -119,6 +147,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(elemento.getId()==igual.getId()&&!valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty()){
                         fin=true;
                         String segundo=valor.getText().toString().substring(lengthPrimerNumero);
+                        if(valor.getText().toString().substring(lengthPrimerNumero+1).charAt(0)=='.'&&valor.getText().toString().substring(lengthPrimerNumero+1).length()==1)
+                            valor.setText(valor.getText().toString().substring(0, lengthPrimerNumero+1)+"0.");
                         segundoNumero=Double.parseDouble(valor.getText().toString().substring(lengthPrimerNumero+1));
 
                         switch (operacion){
@@ -160,17 +190,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(!fin&&elemento.getText().toString()!="="){
                     if(nuevoNumero){
                         nuevoNumero=false;
-                        if(elemento.getText().toString()==".")
+                        if (v.getId() == mas.getId() || v.getId() == menos.getId() || v.getId() == por.getId() || v.getId() == entre.getId())
                             valor.setText("0"+elemento.getText());
                         else
                             valor.setText(elemento.getText());
                     }
-                    else{
+                    else
                          valor.setText(valor.getText().toString().concat(elemento.getText().toString()));
-                    }
                 }
                 break;
         }
+    }
+
+    public void nuevaImagen(){
+        orientacion=getResources().getConfiguration().orientation;
+
+        nuevoCalculo=true;
+        nuevoNumero=true;
+        primerNumero=null;
+        lengthPrimerNumero=null;
+        segundoNumero=null;
+        operacion=null;
+        fin=false;
+        menosEscrito=false;
+
+        valor=(TextView)findViewById(R.id.valorMain);
+
+        clean = (TextView)findViewById(R.id.cleanMain);
+        mas = (TextView)findViewById(R.id.masMain);
+        siete = (TextView)findViewById(R.id.sieteMain);
+        ocho = (TextView)findViewById(R.id.ochoMain);
+        nueve = (TextView)findViewById(R.id.nueveMain);
+        menos = (TextView)findViewById(R.id.menosMain);
+        cuatro = (TextView)findViewById(R.id.cuatroMain);
+        cinco = (TextView)findViewById(R.id.cincoMain);
+        seis = (TextView)findViewById(R.id.seisMain);
+        por = (TextView)findViewById(R.id.porMain);
+        uno = (TextView)findViewById(R.id.unoMain);
+        dos = (TextView)findViewById(R.id.dosMain);
+        tres = (TextView)findViewById(R.id.tresMain);
+        entre = (TextView)findViewById(R.id.entreMain);
+        cero = (TextView)findViewById(R.id.ceroMain);
+        punto = (TextView)findViewById(R.id.puntoMain);
+        igual = (TextView)findViewById(R.id.igualMain);
+
+        seno = (TextView)findViewById(R.id.sinMain);
+        coseno = (TextView)findViewById(R.id.cosMain);
+        tangente = (TextView)findViewById(R.id.tanMain);
     }
 
     public void nuevoEvento(){
@@ -207,6 +273,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         por.setBackgroundResource(R.color.colorPrimaryDark);
         entre.setBackgroundResource(R.color.colorPrimaryDark);
         igual.setBackgroundResource(R.color.colorAccent);
+
+        if(orientacion== Configuration.ORIENTATION_LANDSCAPE){
+            seno.setOnClickListener(this);
+            coseno.setOnClickListener(this);
+            tangente.setOnClickListener(this);
+
+            seno.setBackgroundResource(R.color.colorPrimaryDark);
+            coseno.setBackgroundResource(R.color.colorPrimaryDark);
+            tangente.setBackgroundResource(R.color.colorPrimaryDark);
+        }
     }
 
     public void ponerGrisTeclas(){
@@ -219,6 +295,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menos.setOnClickListener(null);
         por.setOnClickListener(null);
         entre.setOnClickListener(null);
+
+        if(orientacion== Configuration.ORIENTATION_LANDSCAPE){
+            seno.setBackgroundResource(R.color.colorSecondaryText);
+            coseno.setBackgroundResource(R.color.colorSecondaryText);
+            tangente.setBackgroundResource(R.color.colorSecondaryText);
+
+            seno.setOnClickListener(null);
+            coseno.setOnClickListener(null);
+            tangente.setOnClickListener(null);
+        }
     }
 
     public void noActionNumber(){
@@ -234,6 +320,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         cero.setOnClickListener(null);
         punto.setOnClickListener(null);
+
+
+
+        if(orientacion== Configuration.ORIENTATION_LANDSCAPE){
+            seno.setOnClickListener(null);
+            coseno.setOnClickListener(null);
+            tangente.setOnClickListener(null);
+        }
+
     }
 
 
