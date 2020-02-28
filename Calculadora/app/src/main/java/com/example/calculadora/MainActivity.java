@@ -45,13 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {     //Si está en horizontal
-            orientacion=getResources().getConfiguration().orientation;          //Adquiere la orientación
             setContentView(R.layout.activity_main);                             //Vuelve a cargar la vista del activity
             nuevaImagen();
             nuevoEvento();
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){   //Si está en vertical
-            orientacion=getResources().getConfiguration().orientation;          //Adquiere la orientación
 
             seno.setOnClickListener(null);                                      //Quita los eventos de OnClick
             coseno.setOnClickListener(null);
@@ -147,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(elemento.getId()==igual.getId()&&!valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty()){
                         fin=true;
                         String segundo=valor.getText().toString().substring(lengthPrimerNumero);
-                        if(valor.getText().toString().substring(lengthPrimerNumero+1).charAt(0)=='.'&&valor.getText().toString().substring(lengthPrimerNumero+1).length()==1)
+                        if((valor.getText().toString().substring(lengthPrimerNumero+1).charAt(0)=='.'&&valor.getText().toString().substring(lengthPrimerNumero+1).length()==1)||valor.getText().toString().substring(lengthPrimerNumero+1).isEmpty())
                             valor.setText(valor.getText().toString().substring(0, lengthPrimerNumero+1)+"0.");
                         segundoNumero=Double.parseDouble(valor.getText().toString().substring(lengthPrimerNumero+1));
 
@@ -187,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
 
-                if(!fin&&elemento.getText().toString()!="="){
+                if(!fin&&elemento.getId()!=R.id.igualMain){
                     if(nuevoNumero){
                         nuevoNumero=false;
                         if (v.getId() == mas.getId() || v.getId() == menos.getId() || v.getId() == por.getId() || v.getId() == entre.getId())
