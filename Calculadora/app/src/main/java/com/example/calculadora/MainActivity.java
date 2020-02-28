@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String operacion;
 
     int orientacion;
-    
+
 
 
     @Override
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nuevaImagen();
+        nuevaImagen(); //Configura como si se fuera a hacer un nuevo calculo desde el inicio
         nuevoEvento();
     }
 
@@ -44,20 +44,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onConfigurationChanged(newConfig);
 
         // Checks the orientation of the screen
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            orientacion=getResources().getConfiguration().orientation;
-            setContentView(R.layout.activity_main);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {     //Si está en horizontal
+            orientacion=getResources().getConfiguration().orientation;          //Adquiere la orientación
+            setContentView(R.layout.activity_main);                             //Vuelve a cargar la vista del activity
             nuevaImagen();
             nuevoEvento();
         }
-        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            orientacion=getResources().getConfiguration().orientation;
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){   //Si está en vertical
+            orientacion=getResources().getConfiguration().orientation;          //Adquiere la orientación
 
-            seno.setOnClickListener(null);
+            seno.setOnClickListener(null);                                      //Quita los eventos de OnClick
             coseno.setOnClickListener(null);
             tangente.setOnClickListener(null);
 
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);                             //Vuelve a cargar la vista del Activity
 
             nuevaImagen();
             nuevoEvento();
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case (R.id.sinMain):
                 try{
-                    Double seno=Math.sin(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    Double seno=Math.sin(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));                //Para usarlo en grados
                     valor.setText(String.valueOf(seno));
                     noActionNumber();
                     ponerGrisTeclas();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case (R.id.cosMain):
                 try{
-                    Double coseno=Math.cos(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    Double coseno=Math.cos(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));              //Para usarlo en grados
                     valor.setText(String.valueOf(coseno));
                     noActionNumber();
                     ponerGrisTeclas();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case (R.id.tanMain):
                 try{
-                    Double tangente=Math.tan(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));
+                    Double tangente=Math.tan(Math.toRadians(Double.parseDouble(""+valor.getText().toString())));            //Para usarlo en grados
                     valor.setText(String.valueOf(tangente));
                     noActionNumber();
                     ponerGrisTeclas();
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void nuevaImagen(){
+    public void nuevaImagen(){                                          //Evento para gargar cuando se inicializa la vista
         orientacion=getResources().getConfiguration().orientation;
 
         nuevoCalculo=true;
@@ -234,12 +234,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         punto = (TextView)findViewById(R.id.puntoMain);
         igual = (TextView)findViewById(R.id.igualMain);
 
-        seno = (TextView)findViewById(R.id.sinMain);
+        seno = (TextView)findViewById(R.id.sinMain);            //Se queda así por si es que está en horizontal desde el inicio
         coseno = (TextView)findViewById(R.id.cosMain);
         tangente = (TextView)findViewById(R.id.tanMain);
     }
 
-    public void nuevoEvento(){
+    public void nuevoEvento(){                              //Evento para cuando se hace un nuevo cálculo (se presiona AC)
         valor.setText("0");
         primerNumero=null;
         segundoNumero=null;
@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void ponerGrisTeclas(){
+    public void ponerGrisTeclas(){                                                  //Bloquea las teclas de las operaciones
         mas.setBackgroundResource(R.color.colorSecondaryText);
         menos.setBackgroundResource(R.color.colorSecondaryText);
         por.setBackgroundResource(R.color.colorSecondaryText);
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void noActionNumber(){
+    public void noActionNumber(){                               //Bloquea los eventos de los números cuando ya se ha hecho una operación
         siete.setOnClickListener(null);
         ocho.setOnClickListener(null);
         nueve.setOnClickListener(null);
@@ -320,7 +320,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         cero.setOnClickListener(null);
         punto.setOnClickListener(null);
-
 
 
         if(orientacion== Configuration.ORIENTATION_LANDSCAPE){
