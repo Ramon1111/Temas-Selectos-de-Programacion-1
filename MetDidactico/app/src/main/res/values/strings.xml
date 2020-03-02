@@ -7,4 +7,8 @@
     <string name="mainStringButtonCrear">Crear</string>
     <string name="mainStringButtonIngresar">Ingresar</string>
     <string name="strBotonCrear">Crear Cuenta</string>
+    <string name="nav_menu_inicio">Inicio</string>
+    <string name="nav_menu_search">Buscar</string>
+    <string name="nav_menu_carrito">Tienda</string>
+    <string name="nav_menu_user">Usuario</string>
 </resources>

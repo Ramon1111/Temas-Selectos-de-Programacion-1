@@ -8,4 +8,8 @@
     <string name="mainStringHintContrasena">Password</string>
     <string name="mainStringButtonIngresar">Log In</string>
     <string name="strBotonCrear">Sign Up</string>
+    <string name="nav_menu_inicio">Home</string>
+    <string name="nav_menu_search">Search</string>
+    <string name="nav_menu_carrito">Shop</string>
+    <string name="nav_menu_user">User</string>
 </resources>

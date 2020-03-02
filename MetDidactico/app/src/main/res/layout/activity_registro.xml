@@ -9,10 +9,11 @@
     >
 
     <TextView
-        android:id="@+id/headTitleLogin"
+        android:id="@+id/headTitleMain"
         android:layout_width="100dp"
+
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="@string/mainStringTextViewCrea"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,24 +23,40 @@
         app:layout_constraintVertical_bias="0.194"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryText" />
+        android:textColor="@color/colorPrimaryText"
+
+
+        />
 
     <EditText
-        android:id="@+id/edtCorreoLogin"
+        android:layout_width="350dp"
+        android:id="@+id/edtNombreMain"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headTitleMain"
+        android:hint="@string/mainStringHintNombre"
+        android:textColor="@color/colorPrimaryText"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/edtCorreoMain"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:hint="Correo"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorPrimaryText"
+        android:layout_marginTop="40dp"
+        android:hint="@string/mainStringHintCorreo"
         android:textColorHint="@color/colorSecondaryText"
+        android:textColor="@color/colorPrimaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headTitleLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreMain"
+        android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/edtContrasenaLogin"
+        android:id="@+id/edtContrasenaMain"
         android:layout_width="350dp"
         android:textColor="@color/colorPrimaryText"
         android:layout_height="wrap_content"
@@ -47,41 +64,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCorreoLogin"
-        android:hint="Contraseña"
+        app:layout_constraintTop_toBottomOf="@+id/edtCorreoMain"
+        android:hint="@string/mainStringHintContrasena"
         android:inputType="textPassword"
         />
 
     <Button
-        android:id="@+id/btnIngresarLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Ingresar"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textColor="@color/colorIcons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-
-        app:layout_constraintStart_toEndOf="@+id/btnCrearLogin"
-        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaLogin" />
-
-    <Button
-        android:id="@+id/btnCrearLogin"
+        android:id="@+id/btnCrearMain"
         style="@style/botonesIngresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="76dp"
-        android:text="@string/strBotonCrear"
-        app:layout_constraintBottom_toBottomOf="@+id/btnIngresarLogin"
+        android:layout_marginTop="52dp"
+        android:text="@string/mainStringButtonCrear"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.47"
+
+        app:layout_constraintStart_toEndOf="@+id/btnIngresarMain"
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain" />
+
+    <Button
+        android:id="@+id/btnIngresarMain"
+        style="@style/botonesIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/mainStringButtonIngresar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaLogin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContrasenaMain" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
