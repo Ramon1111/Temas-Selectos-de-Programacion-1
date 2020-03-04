@@ -7,5 +7,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="fragment Usuario"
+        android:layout_gravity="center"
         android:textSize="30dp"/>
+
+
+    <Button
+        android:id="@+id/btnCrearFragUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainStringButtonCrear"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:textColor="@android:color/white"/>
+    <Button
+        android:id="@+id/btnIngresarFragUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainStringButtonIngresar"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:textColor="@android:color/white"/>
+
+
 </LinearLayout>

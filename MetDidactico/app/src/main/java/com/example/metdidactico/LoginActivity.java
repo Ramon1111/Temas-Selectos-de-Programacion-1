@@ -2,6 +2,7 @@ package com.example.metdidactico;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,16 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(onClickIngresar);
         btnCrearCuenta.setOnClickListener(onClickCrearCuenta);
 
-
-        /*btnIngresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(edtCorreo.getText().toString()==correo&&edtPassword.getText().toString()==password)
-                    Toast.makeText(getApplicationContext(), "Datos correctos", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getApplicationContext(),"Datos Incorrectos",Toast.LENGTH_SHORT);
-            }
-        });*/
     }
 
     View.OnClickListener onClickCrearCuenta=new View.OnClickListener() {
@@ -72,10 +63,24 @@ public class LoginActivity extends AppCompatActivity {
     View.OnClickListener onClickIngresar=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(edtCorreo.getText().toString().equals(correo)&&edtPassword.getText().toString().equals(password))
+            if(edtCorreo.getText().toString().equals(correo)&&edtPassword.getText().toString().equals(password)){
                 Toast.makeText(getApplicationContext(), "Bienvenido, has ingresado sesión", Toast.LENGTH_SHORT).show();
-            else
+
+            }
+            else{
                 Toast.makeText(getApplicationContext(),"Correo o contraseña inválidos",Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            BuscarUsuario();
+                        } catch (InterruptedException e) {
+                            Log.d("error", e.getMessage());
+                        }
+                        Log.d("Hilo","Hilo Terminado");
+                    }
+                }).start();
+            }
         }
     };
 
@@ -115,4 +120,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onRestart();
         Toast.makeText(this,"Método onRestart",Toast.LENGTH_SHORT).show();
     }
+
+    public void BuscarUsuario() throws InterruptedException {
+
+        for(int i=1;i<=15;i++){
+            Thread.sleep(1000);
+            Log.d("Segundos","Tiempo de Búsqueda: "+i+"[s]");
+        }
+    }
+
 }

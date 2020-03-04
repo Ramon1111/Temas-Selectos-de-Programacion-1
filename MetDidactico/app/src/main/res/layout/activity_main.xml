@@ -7,11 +7,12 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/fragmentContenedor"
+        android:id="@+id/fragContentMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_above="@+id/btnNavPrincipal"
-        android:background="@color/colorAccent"/>
+        />
 
     <!--Por defecto viene en horizontal-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
