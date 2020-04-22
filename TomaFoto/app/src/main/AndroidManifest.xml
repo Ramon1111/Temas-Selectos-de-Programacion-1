@@ -6,7 +6,6 @@
     Aquí se indica que se requiere usar la cmaara-->
     <uses-feature android:name="android.hardware.camera"
         android:required="true"/>
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
