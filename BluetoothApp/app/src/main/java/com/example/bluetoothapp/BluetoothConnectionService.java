@@ -15,9 +15,9 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 public class BluetoothConnectionService {
-    private static final String TAG = "BluetoothString";
+    private static final String TAG = "BluetoothExercise";
 
-    private static final String appName = "MyApp";
+    private static final String appName = "MiApp";
 
     private static final UUID MY_UUID_INSECURE = UUID.fromString("2d8822d4-8ccb-11ea-bc55-0242ac130003");
 
