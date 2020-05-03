@@ -19,7 +19,8 @@
         android:layout_height="200dp"
         android:id="@+id/imgCamara"
         android:layout_gravity="center"
-        android:src="@drawable/lente_camara"/>
+        android:src="@drawable/lente"
+        />
 
 
 </LinearLayout>
