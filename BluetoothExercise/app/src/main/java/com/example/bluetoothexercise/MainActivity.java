@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     BluetoothDevice mBTDevice;
 
     EditText etSend;
-    /////////////////////////////////////////////////////////////////////
+
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
 
     public DeviceListAdapter mDeviceListAdapter;
@@ -77,10 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     };
 
-    /**
-     * Broadcast Receiver for changes made to bluetooth states such as:
-     * 1) Discoverability mode on/off or expire.
-     */
+
     private final BroadcastReceiver mBroadcastReceiver2 = new BroadcastReceiver() {
 
         @Override
@@ -115,13 +112,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     };
 
-
-
-
-    /**
-     * Broadcast Receiver for listing devices that are not yet paired
-     * -Executed by btnDiscover() method.
-     */
     private BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -148,20 +138,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
                 BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                //3 cases:
-                //case1: bonded already
+
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     /* *******************************************************/
                     //Parte del video
                     mBTDevice=mDevice;
-                    ///////////////////////////////////////////////////////////
                 }
-                //case2: creating a bone
+
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDING.");
                 }
-                //case3: breaking a bond
+
                 if (mDevice.getBondState() == BluetoothDevice.BOND_NONE) {
                     Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
                 }
@@ -191,14 +179,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
-        ////////////////////////////////////////////////////////////
-        /* Parte del video******************* *********************/
-        btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
-        btnSend=(Button) findViewById(R.id.btnSend);
-        etSend=(EditText) findViewById(R.id.editText);
-        ////////////////////////////////////////////////////////////
 
-        //Broadcasts when bond state changes (ie:pairing)
+        btnStartConnection =findViewById(R.id.btnStartConnection);
+        btnSend=findViewById(R.id.btnSend);
+        etSend=findViewById(R.id.editText);
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver4, filter);
 
@@ -215,8 +199,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        /* ******************************************************/
-        //Parte del video
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,25 +212,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mBluetoothConnection.write(bytes);
             }
         });
-        //////////////////////////////////////////////////////////
     }
 
-    /* ******************************************************/
-    //Parte del video
     public void startConnection(){
         startBTConnection(mBTDevice,MY_UUID_INSECURE);
     }
-    //////////////////////////////////////////////////////////
 
-    /* ******************************************************/
-    //Parte del video
     public void startBTConnection(BluetoothDevice device, UUID uuid){
         Log.d(TAG,"startBTConnection: Initializing RFCOM Bluetooth Connection.");
 
         mBluetoothConnection.startClient(device,uuid);
     }
-
-    //////////////////////////////////////////////////////////
 
     public void enableDisableBT(){
         if(mBluetoothAdapter == null){
@@ -293,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mBluetoothAdapter.cancelDiscovery();
             Log.d(TAG, "btnDiscover: Canceling discovery.");
 
-            //check BT permissions in manifest
+            Log.i(TAG,"Buscando wiiiii");
             checkBTPermissions();
 
             mBluetoothAdapter.startDiscovery();
@@ -302,7 +276,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         if(!mBluetoothAdapter.isDiscovering()){
 
-            //check BT permissions in manifest
             checkBTPermissions();
 
             mBluetoothAdapter.startDiscovery();
@@ -311,13 +284,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    /**
-     * This method is required for all devices running API23+
-     * Android must programmatically check the permissions for bluetooth. Putting the proper permissions
-     * in the manifest is not enough.
-     *
-     * NOTE: This will only execute on versions > LOLLIPOP because it is not needed otherwise.
-     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkBTPermissions() {
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
